@@ -18,7 +18,7 @@ class AlbumDetails extends Component {
                             </div>
                             <div className="col-md-4">
                                 <ul>
-                                    <li>{this.state.album.tracklist}</li>
+                                    <li>{this.state.album.title}</li>
                                 </ul>
                             </div>
                             </>
@@ -31,7 +31,7 @@ class AlbumDetails extends Component {
 
 
     componentDidMount = async() => {
-        var response = await fetch("https://deezerdevs-deezer.p.rapidapi.com/album/7055111"+this.props.id ,{
+        var response = await fetch("https://deezerdevs-deezer.p.rapidapi.com/album/"+this.props.id ,{
                 headers: new Headers({
                   "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
                   "x-rapidapi-key": "081fe7ac1dmshc01ed6deec8fd84p1c4339jsn69b9e391bb08"
@@ -39,7 +39,6 @@ class AlbumDetails extends Component {
             })
         var album = await response.json();
         this.setState({album:album});
-        console.log(album)
 
      };
     componentDidUpdate = async prevProps => {
@@ -53,6 +52,8 @@ class AlbumDetails extends Component {
             var album = await response.json();
 
             this.setState({ album: album});
+
+         
 
         }
     };
